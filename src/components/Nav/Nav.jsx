@@ -22,7 +22,7 @@ function Nav() {
         )}
 
         {/* If a user is logged in, show these links */}
-        {user.id && (
+        {user.id &&  (
           <>
             <Link className="navLink" to="/user">
               Home
