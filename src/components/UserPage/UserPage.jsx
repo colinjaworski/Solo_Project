@@ -12,11 +12,12 @@ function UserPage() {
 
   const user = useSelector((store) => store.user);
   const favorites = useSelector((store) => store.favorites);
-  console.log('favorites', favorites);
+  // console.log('favorites', favorites);
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-
+      <h3>Here are your saved trees</h3>
       {favorites.map((favorite, i) => {
         return (
           <ul key={i}>
@@ -26,8 +27,6 @@ function UserPage() {
           </ul>
         );
       })}
-
-
 
       {/* <p>Your ID is: {user.id}</p> */}
       {/* <LogOutButton className="btn" /> */}
