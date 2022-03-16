@@ -10,7 +10,7 @@ const router = express.Router();
 console.log('in router.get, search router')
 
     if (req.isAuthenticated()) {
-        const queryText = `SELECT species
+        const queryText = `SELECT *
         FROM "recommended_southEast_deciduous"`;
         pool.query(queryText)
 
