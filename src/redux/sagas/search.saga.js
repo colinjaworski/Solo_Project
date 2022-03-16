@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* getFavorites() { 
+function* getSearchResults() { 
 
     try {
-        const response = yield axios.get('/api/favorites');
-        yield put({ type: 'SET_FAVORITES', payload: response.data });
+        const response = yield axios.get('/api/search');
+        yield put({ type: 'SET_SEARCH_RESULTS', payload: response.data });
 
 
     } catch (error) {
-        console.log('SET favorites failed', error);
+        console.log('SET search results failed', error);
 
     }
 }
@@ -24,10 +24,10 @@ function* getFavorites() {
 //     }
 // }
 
-function* favoritesSaga() {
-    yield takeLatest('FETCH_FAVORITES', getFavorites); 
+function* searchSaga() {
+    yield takeLatest('FETCH_SEARCH_RESULTS', getSearchResults); 
     // yield takeLatest('POST_NEW_SHELF_ITEM', postfavorites);
 
 }
 
-export default favoritesSaga;
+export default searchSaga;
