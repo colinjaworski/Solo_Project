@@ -8,7 +8,7 @@ function* getFavorites() {
 
     try {
         const response = yield axios.get('/api/favorites');
-        yield put({ type: 'SET_SHELF', payload: response.data }); // is SET_SHELF right?
+        yield put({ type: 'SET_FAVORITES', payload: response.data }); // is SET_SHELF right?
 
 
     } catch (error) {
@@ -18,7 +18,7 @@ function* getFavorites() {
 }
 
 function* favoritesSaga() {
-    yield takeLatest('FETCH_SHELF', getFavorites); // is FETCH_SHELF right? Is it supposed to match the getFavorites?
+    yield takeLatest('FETCH_FAVORITES', getFavorites); // is FETCH_SHELF right? Is it supposed to match the getFavorites?
 }
 
 export default favoritesSaga;
