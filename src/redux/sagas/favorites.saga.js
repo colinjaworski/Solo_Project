@@ -1,16 +1,11 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-
-
-
-function* getFavorites() {
-
-    console.log('in favorites saga')
+function* getFavorites() { 
 
     try {
         const response = yield axios.get('/api/favorites');
-        yield put({ type: 'SET_FAVORITES', payload: response.data }); // is SET_FAVORITES right?
+        yield put({ type: 'SET_FAVORITES', payload: response.data });
 
 
     } catch (error) {
@@ -19,8 +14,20 @@ function* getFavorites() {
     }
 }
 
+// function* postfavorites(action) {
+//     try {
+//         yield axios.post('/api/shelf', action.payload);
+
+//         yield put({type: 'FETCH_SHELF'})
+//     } catch {
+//         console.log('error');
+//     }
+// }
+
 function* favoritesSaga() {
-    yield takeLatest('FETCH_FAVORITES', getFavorites); // is FETCH_FAVORITES right? Is it supposed to match the getFavorites?
+    yield takeLatest('FETCH_FAVORITES', getFavorites); 
+    // yield takeLatest('POST_NEW_SHELF_ITEM', postfavorites);
+
 }
 
 export default favoritesSaga;
