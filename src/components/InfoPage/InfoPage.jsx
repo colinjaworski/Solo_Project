@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 
@@ -8,7 +8,9 @@ function SearchPage() {
   const history = useHistory();
   const dispatch = useDispatch();
   const searchResults = useSelector((store) => store.searchResults);
-
+  const [maxHeight, setMaxHeight] = useState('');
+  const [maxWidth, setMaxWidth] = useState('');
+ 
   // useEffect(() => {
   //   dispatch({ type: 'FETCH_SEARCH_RESULTS' });
   // }, [dispatch]);
@@ -23,18 +25,30 @@ function SearchPage() {
   }
 
   function handleSearch() {
-    dispatch({ type: 'FETCH_SEARCH_RESULTS' });
+    console.log('the max height search', Number(maxHeight));
+    console.log('the max width search', Number(maxWidth));
+
+    dispatch({ type: 'FETCH_SEARCH_RESULTS', 
+    // payload: {maxHeight} {maxWidth}   values from inputs go here??????????????????
+  });
+    
   }
 
   return (
     <>
       <div className="container">
         <p>Search New</p>
-        <input placeholder="region" type="text" />
-        <input placeholder="max height" type="text" />
-        <input placeholder="max width" type="text" />
+        {/* <input placeholder="region" type="text" /> */}
+        <input placeholder="max height" type="text" 
+          value={maxHeight}
+          onChange={() => setMaxHeight(event.target.value)}/>
+
+        <input placeholder="max width" type="text" 
+        value={maxWidth}
+        onChange={() => setMaxWidth(event.target.value)}/>
+
         <button
-        onClick={handleSearch}
+          onClick={() => handleSearch()} // pass in input values here????????????????
         >Submit</button>
 
         <div className="searchResults">
