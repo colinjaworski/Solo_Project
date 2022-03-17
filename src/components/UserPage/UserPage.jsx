@@ -36,8 +36,8 @@ function UserPage() {
                 <img className="treePicture"
                   src={favorite.img_url} alt=""
                   width="200" height="200" />
-                  
-                <button onClick={handleSubmit(favorite.tree_id)}>remove</button>
+
+                <button onClick={() => handleSubmit(favorite.tree_id)}>remove</button>
 
               </div>
             );
