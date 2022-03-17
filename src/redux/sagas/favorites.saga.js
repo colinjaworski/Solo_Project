@@ -14,6 +14,19 @@ function* getFavorites() {
     }
 }
 
+
+function* deleteFavorite(action) { 
+
+    try {
+        const response = yield axios.delete(`/api/favorites/${action.payload}`); // make route at favorites router
+        yield put({ type: 'SET_FAVORITES', payload: response.data }); // is this right? ********
+        // console.log('in delete favorite saga')
+
+    } catch (error) {
+        console.log('SET favorites failed', error);
+
+    }
+}
 // function* postfavorites(action) {
 //     try {
 //         yield axios.post('/api/shelf', action.payload);
@@ -26,6 +39,8 @@ function* getFavorites() {
 
 function* favoritesSaga() {
     yield takeLatest('FETCH_FAVORITES', getFavorites); 
+    yield takeLatest('DELETE_FAVORITE', deleteFavorite); 
+
     // yield takeLatest('POST_NEW_SHELF_ITEM', postfavorites);
 
 }
