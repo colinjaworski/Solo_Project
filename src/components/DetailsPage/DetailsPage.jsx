@@ -22,6 +22,7 @@ function DetailsPage() {
   }
 
   const handleSubmit = (treeId) => {
+    history.push('/info')
     console.log('favoriting tree', treeId)
     dispatch({ type: 'POST_FAVORITE', payload: treeId })
   }
