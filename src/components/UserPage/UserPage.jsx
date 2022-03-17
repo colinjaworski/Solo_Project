@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom'
+
 
 function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
+
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_FAVORITES' });
@@ -17,6 +20,15 @@ function UserPage() {
   const handleSubmit = (favorite) => {
     console.log('removing tree', favorite)
     dispatch({ type: 'DELETE_FAVORITE', payload: favorite })
+  }
+
+  function detailsPage(tree) { // function dispatches selected movie and information to movie reducer
+    console.log('Tree data', tree)
+    dispatch({
+      type: 'SELECTED_TREE',
+      payload: tree
+    })
+    history.push('/details')
   }
 
   return (
@@ -34,7 +46,9 @@ function UserPage() {
                 <h5 className="treeName">{favorite.species}</h5>
                 <img className="treePicture"
                   src={favorite.img_url} alt=""
-                  width="200" height="200" />
+                  width="200" height="200" 
+                  onClick={() => detailsPage(favorite)}
+                  />
 
                 <button onClick={() => handleSubmit(favorite.tree_id)}>remove</button>
 
