@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,23 +14,39 @@ function UserPage() {
   const favorites = useSelector((store) => store.favorites);
   // console.log('favorites', favorites);
 
-  return (
-    <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <h3>Here are your saved trees</h3>
-      {favorites.map((favorite, i) => {
-        return (
-          <ul key={i}>
-            <li>
-              {favorite.species}
-            </li>
-          </ul>
-        );
-      })}
+  const handleSubmit = (favorite) => {
+    // favorite.preventDefault();
 
-      {/* <p>Your ID is: {user.id}</p> */}
-      {/* <LogOutButton className="btn" /> */}
-    </div>
+    console.log('removing tree', favorite)
+  }
+
+  return (
+    <>
+      <div className="container">
+        <h2>Welcome, {user.username}!</h2>
+        <h3>Here are your saved trees</h3>
+
+        <div className="searchResults">
+          {favorites.map((favorite, i) => {
+
+            return (
+              <div key={i}>
+
+                <h5 className="treeName">{favorite.species}</h5>
+                <img className="treePicture"
+                  src={favorite.img_url} alt=""
+                  width="200" height="200" />
+                  
+                <button onClick={handleSubmit(favorite.tree_id)}>remove</button>
+
+              </div>
+            );
+          })}
+        </div>
+        {/* <p>Your ID is: {user.id}</p> */}
+        {/* <LogOutButton className="btn" /> */}
+      </div>
+    </>
   );
 }
 

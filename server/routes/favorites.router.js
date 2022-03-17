@@ -10,7 +10,7 @@ const router = express.Router();
 console.log('in router.get, favorites router')
 
     if (req.isAuthenticated()) {
-        const queryText = `SELECT species
+        const queryText = `SELECT *
         FROM "recommended_southEast_deciduous"
         JOIN "favorites"
         ON "recommended_southEast_deciduous"."id"="favorites"."tree_id" 

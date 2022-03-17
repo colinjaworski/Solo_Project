@@ -41,7 +41,6 @@ function SearchPage() {
                   width="200" height="200"
                   onClick={() => detailsPage(tree)}
                 />
-
               </div>
 
             );
