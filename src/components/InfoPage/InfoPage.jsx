@@ -9,9 +9,9 @@ function SearchPage() {
   const dispatch = useDispatch();
   const searchResults = useSelector((store) => store.searchResults);
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_SEARCH_RESULTS' });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch({ type: 'FETCH_SEARCH_RESULTS' });
+  // }, [dispatch]);
 
   function detailsPage(tree) { // function dispatches selected movie and information to movie reducer
     console.log('Tree data', tree)
@@ -22,6 +22,10 @@ function SearchPage() {
     history.push('/details')
   }
 
+  function handleSearch() {
+    dispatch({ type: 'FETCH_SEARCH_RESULTS' });
+  }
+
   return (
     <>
       <div className="container">
@@ -29,7 +33,9 @@ function SearchPage() {
         <input placeholder="region" type="text" />
         <input placeholder="max height" type="text" />
         <input placeholder="max width" type="text" />
-        <button>Submit</button>
+        <button
+        onClick={handleSearch}
+        >Submit</button>
 
         <div className="searchResults">
           {searchResults.map((tree, i) => {

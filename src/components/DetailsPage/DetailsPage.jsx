@@ -10,6 +10,7 @@ function DetailsPage() {
   // a default value of 'Functional Component'
   // const [heading, setHeading] = useState('Functional Component');
   const details = useSelector((store) => store.details);
+  const dispatch = useDispatch();
 
   const history = useHistory();
 
@@ -20,6 +21,11 @@ function DetailsPage() {
     history.push('/info')
   }
 
+  const handleSubmit = (treeId) => {
+    console.log('favoriting tree', treeId)
+    dispatch({ type: 'POST_FAVORITE', payload: treeId })
+  }
+
   return (
     <div>
       <h2>Details Page</h2>
@@ -28,6 +34,10 @@ function DetailsPage() {
       <img className="treePicture"
         src={details.img_url} alt=""
         width="300" height="300" />
+        <br/>
+        <button
+        onClick={() => handleSubmit(details.id)}
+        >Like</button>
          <br />
         <p>{details.height} feet tall and {details.width} feet wide</p>
         <p>Fall color: {details.fall_color}</p>
