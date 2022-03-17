@@ -15,9 +15,8 @@ function UserPage() {
   // console.log('favorites', favorites);
 
   const handleSubmit = (favorite) => {
-    // favorite.preventDefault();
-
     console.log('removing tree', favorite)
+    dispatch({ type: 'DELETE_FAVORITE', payload: favorite })
   }
 
   return (
