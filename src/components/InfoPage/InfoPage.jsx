@@ -10,7 +10,7 @@ function SearchPage() {
   const searchResults = useSelector((store) => store.searchResults);
   const [maxHeight, setMaxHeight] = useState('');
   const [maxWidth, setMaxWidth] = useState('');
- 
+
   // useEffect(() => {
   //   dispatch({ type: 'FETCH_SEARCH_RESULTS' });
   // }, [dispatch]);
@@ -28,51 +28,52 @@ function SearchPage() {
     console.log('the max height search', Number(maxHeight));
     console.log('the max width search', Number(maxWidth));
 
-    dispatch({ type: 'FETCH_SEARCH_RESULTS', 
-    // payload: {maxHeight} {maxWidth}   values from inputs go here??????????????????
+    dispatch({
+      type: 'FETCH_SEARCH_RESULTS',
+      payload: { maxHeight: maxHeight, maxWidth: maxWidth }   // sending height and width for tree GET request
   });
-    
-  }
+// maxHeight: maxHeight, 
+}
 
-  return (
-    <>
-      <div className="container">
-        <p>Search New</p>
-        {/* <input placeholder="region" type="text" /> */}
-        <input placeholder="max height" type="text" 
-          value={maxHeight}
-          onChange={() => setMaxHeight(event.target.value)}/>
+return (
+  <>
+    <div className="container">
+      <p>Search New</p>
+      {/* <input placeholder="region" type="text" /> */}
+      <input placeholder="max height" type="text"
+        value={maxHeight}
+        onChange={() => setMaxHeight(event.target.value)} />
 
-        <input placeholder="max width" type="text" 
+      <input placeholder="max width" type="text"
         value={maxWidth}
-        onChange={() => setMaxWidth(event.target.value)}/>
+        onChange={() => setMaxWidth(event.target.value)} />
 
-        <button
-          onClick={() => handleSearch()} // pass in input values here????????????????
-        >Submit</button>
+      <button
+        onClick={() => handleSearch()} // pass in input values here????????????????
+      >Submit</button>
 
-        <div className="searchResults">
-          {searchResults.map((tree, i) => {
-            return (
-              <div className="" key={i}>
-                <h5 className="treeName">{tree.species}</h5>
-                <img className="treePicture"
-                  src={tree.img_url} alt=""
-                  width="200" height="200"
-                  onClick={() => detailsPage(tree)}
-                />
-              </div>
+      <div className="searchResults">
+        {searchResults.map((tree, i) => {
+          return (
+            <div className="" key={i}>
+              <h5 className="treeName">{tree.species}</h5>
+              <img className="treePicture"
+                src={tree.img_url} alt=""
+                width="200" height="200"
+                onClick={() => detailsPage(tree)}
+              />
+            </div>
 
-            );
-          })}
-        </div>
-
+          );
+        })}
       </div>
 
+    </div>
 
 
-    </>
-  );
+
+  </>
+);
 }
 
 export default SearchPage;
