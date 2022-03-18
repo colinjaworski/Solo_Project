@@ -31,64 +31,71 @@ function SearchPage() {
     dispatch({
       type: 'FETCH_SEARCH_RESULTS',
       payload: { maxHeight: maxHeight, maxWidth: maxWidth }   // sending height and width for tree GET request
-  });
-// maxHeight: maxHeight, 
-}
-
-function isAuthorized() {
-  if(person.id === 1) {
-  console.log('this user is authorized!!!')
-  setAuthorised(true)
+    });
+    // maxHeight: maxHeight, 
   }
-}
 
-return (
-  <>
-    <div className="container">
-      <p>Search New</p>
-      {/* <input placeholder="region" type="text" /> */}
-      <input placeholder="max height" type="text"
-        value={maxHeight}
-        onChange={() => setMaxHeight(event.target.value)} />
+  function isAuthorized() {
+    if (person.id === 1) {
+      console.log('this user is authorized!!!')
+      setAuthorised(true)
+    }
+  }
 
-      <input placeholder="max width" type="text"
-        value={maxWidth}
-        onChange={() => setMaxWidth(event.target.value)} />
+  return (
+    <>
+      <div className="container">
+        <p>Search New</p>
+        {/* <input placeholder="region" type="text" /> */}
+        <input placeholder="max height" type="text"
+          value={maxHeight}
+          onChange={() => setMaxHeight(event.target.value)} />
 
-      <button
-        onClick={() => handleSearch()} // pass in input values here????????????????
-      >Submit</button>
+        <input placeholder="max width" type="text"
+          value={maxWidth}
+          onChange={() => setMaxWidth(event.target.value)} />
+
+        <button
+          onClick={() => handleSearch()} // pass in input values here????????????????
+        >Submit</button>
 
 
 
-      <div className="searchResults">
-        {searchResults.map((tree, i) => {
-          return (
-            <div className="" key={i}>
-              <h5 className="treeName">{tree.species}</h5>
-              <img className="treePicture"
-                src={tree.img_url} alt=""
-                width="200" height="200"
-                onClick={() => detailsPage(tree)}
-              />
-              <br/>
-              
-              <button
-              disabled={!authorised}
-              onClick={() => detailsPage(tree)}
-              >Edit</button>
-            </div>
+        <div className="searchResults">
+          {searchResults.map((tree, i) => {
+            return (
+              <div className="" key={i}>
+                <h5 className="treeName">{tree.species}</h5>
+                <img className="treePicture"
+                  src={tree.img_url} alt=""
+                  width="200" height="200"
+                  onClick={() => detailsPage(tree)}
+                />
+                <br />
 
-          );
-        })}
+
+
+                {(function () {
+                  if (authorised) {
+                    return <button
+                      onClick={() => detailsPage(tree)} // this will be edit page instead of details page
+                    >Edit</button>;
+                  } else {
+                    return;
+                  }
+                })()}
+              </div>
+
+            );
+          })}
+        </div>
+
       </div>
 
-    </div>
 
 
-
-  </>
-);
+    </>
+  );
 }
 
 export default SearchPage;
