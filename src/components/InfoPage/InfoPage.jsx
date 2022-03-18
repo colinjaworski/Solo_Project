@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 
-
 function SearchPage() {
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const person = useSelector((store) => store.user);
   const searchResults = useSelector((store) => store.searchResults);
   const [maxHeight, setMaxHeight] = useState('');
   const [maxWidth, setMaxWidth] = useState('');
-
-  // useEffect(() => {
-  //   dispatch({ type: 'FETCH_SEARCH_RESULTS' });
-  // }, [dispatch]);
+  const [authorised, setAuthorised] = useState(false)
+  useEffect(() => {
+    isAuthorized()
+  }, []);
 
   function detailsPage(tree) { // function dispatches selected movie and information to movie reducer
     console.log('Tree data', tree)
@@ -25,14 +25,21 @@ function SearchPage() {
   }
 
   function handleSearch() {
-    console.log('the max height search', Number(maxHeight));
-    console.log('the max width search', Number(maxWidth));
+    // console.log('the max height search', Number(maxHeight));
+    // console.log('the max width search', Number(maxWidth));
 
     dispatch({
       type: 'FETCH_SEARCH_RESULTS',
       payload: { maxHeight: maxHeight, maxWidth: maxWidth }   // sending height and width for tree GET request
   });
 // maxHeight: maxHeight, 
+}
+
+function isAuthorized() {
+  if(person.id === 1) {
+  console.log('this user is authorized!!!')
+  setAuthorised(true)
+  }
 }
 
 return (
@@ -52,6 +59,8 @@ return (
         onClick={() => handleSearch()} // pass in input values here????????????????
       >Submit</button>
 
+
+
       <div className="searchResults">
         {searchResults.map((tree, i) => {
           return (
@@ -62,6 +71,12 @@ return (
                 width="200" height="200"
                 onClick={() => detailsPage(tree)}
               />
+              <br/>
+              
+              <button
+              disabled={!authorised}
+              onClick={() => detailsPage(tree)}
+              >Edit</button>
             </div>
 
           );
