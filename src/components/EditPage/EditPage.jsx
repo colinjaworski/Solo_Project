@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
@@ -9,6 +10,7 @@ function EditPage() {
     const history = useHistory();
     const details = useSelector((store) => store.details);
     const editUrl = useSelector((store) => store.edit);
+    const detailsId = useSelector((store) => store.details.id);
 
     console.log('details', details)
 
@@ -18,20 +20,19 @@ function EditPage() {
 
     function handleSubmit(event) {
         // event.preventDefault();
-    console.log('input value: ', editUrl, ', the id of the tree is', details.id) // editUrl is what is sent on button click & represents input data
-        // PUT REQUEST to /students/:id
-        // axios.put(`/students/${editStudent.id}`, editUrl)
-        //     .then(response => {
-        //         // clean up reducer data            
-        //         dispatch({ type: 'CLEAR_EDIT' });
+        console.log('input value: ', editUrl, ', the id of the tree is', details.id) // editUrl is what is sent on button click & represents input data
+        
+        dispatch({
+            type: 'EDIT_TREE',
+            payload: {
+                editUrl: editUrl,
+                detailsId: detailsId,
+            
+            }
+        });
 
-        //         // refresh will happen with useEffect on Home
-        //         history.push('/'); // back to list
-        //     })
-        //     .catch(error => {
-        //         console.log('error on PUT: ', error);
-        //     })
 
+        console.log('after dispatch in handle submit')
     };
 
     function handleChange(event) {
@@ -40,7 +41,7 @@ function EditPage() {
             payload: event.target.value
         });
 
-       
+
 
         console.log(event.target.value)
     }
