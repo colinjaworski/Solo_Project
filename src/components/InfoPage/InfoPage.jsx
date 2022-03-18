@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 
-
 function SearchPage() {
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const person = useSelector((store) => store.user);
   const searchResults = useSelector((store) => store.searchResults);
   const [maxHeight, setMaxHeight] = useState('');
   const [maxWidth, setMaxWidth] = useState('');
-
-  // useEffect(() => {
-  //   dispatch({ type: 'FETCH_SEARCH_RESULTS' });
-  // }, [dispatch]);
+  const [authorised, setAuthorised] = useState(false)
+  useEffect(() => {
+    isAuthorized()
+  }, []);
 
   function detailsPage(tree) { // function dispatches selected movie and information to movie reducer
     console.log('Tree data', tree)
@@ -25,55 +25,77 @@ function SearchPage() {
   }
 
   function handleSearch() {
-    console.log('the max height search', Number(maxHeight));
-    console.log('the max width search', Number(maxWidth));
+    // console.log('the max height search', Number(maxHeight));
+    // console.log('the max width search', Number(maxWidth));
 
     dispatch({
       type: 'FETCH_SEARCH_RESULTS',
       payload: { maxHeight: maxHeight, maxWidth: maxWidth }   // sending height and width for tree GET request
-  });
-// maxHeight: maxHeight, 
-}
+    });
+    // maxHeight: maxHeight, 
+  }
 
-return (
-  <>
-    <div className="container">
-      <p>Search New</p>
-      {/* <input placeholder="region" type="text" /> */}
-      <input placeholder="max height" type="text"
-        value={maxHeight}
-        onChange={() => setMaxHeight(event.target.value)} />
+  function isAuthorized() {
+    if (person.id === 1) {
+      console.log('this user is authorized!!!')
+      setAuthorised(true)
+    }
+  }
 
-      <input placeholder="max width" type="text"
-        value={maxWidth}
-        onChange={() => setMaxWidth(event.target.value)} />
+  return (
+    <>
+      <div className="container">
+        <p>Search New</p>
+        {/* <input placeholder="region" type="text" /> */}
+        <input placeholder="max height" type="text"
+          value={maxHeight}
+          onChange={() => setMaxHeight(event.target.value)} />
 
-      <button
-        onClick={() => handleSearch()} // pass in input values here????????????????
-      >Submit</button>
+        <input placeholder="max width" type="text"
+          value={maxWidth}
+          onChange={() => setMaxWidth(event.target.value)} />
 
-      <div className="searchResults">
-        {searchResults.map((tree, i) => {
-          return (
-            <div className="" key={i}>
-              <h5 className="treeName">{tree.species}</h5>
-              <img className="treePicture"
-                src={tree.img_url} alt=""
-                width="200" height="200"
-                onClick={() => detailsPage(tree)}
-              />
-            </div>
+        <button
+          onClick={() => handleSearch()} // pass in input values here????????????????
+        >Submit</button>
 
-          );
-        })}
+
+
+        <div className="searchResults">
+          {searchResults.map((tree, i) => {
+            return (
+              <div className="" key={i}>
+                <h5 className="treeName">{tree.species}</h5>
+                <img className="treePicture"
+                  src={tree.img_url} alt=""
+                  width="200" height="200"
+                  onClick={() => detailsPage(tree)}
+                />
+                <br />
+
+
+
+                {(function () {
+                  if (authorised) {
+                    return <button
+                      onClick={() => detailsPage(tree)} // this will be edit page instead of details page
+                    >Edit</button>;
+                  } else {
+                    return;
+                  }
+                })()}
+              </div>
+
+            );
+          })}
+        </div>
+
       </div>
 
-    </div>
 
 
-
-  </>
-);
+    </>
+  );
 }
 
 export default SearchPage;
