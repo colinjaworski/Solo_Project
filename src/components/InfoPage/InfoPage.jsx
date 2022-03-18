@@ -26,10 +26,10 @@ function SearchPage() {
 
   function editPage(tree) { // function dispatches selected movie and information to movie reducer
     console.log('Tree data', tree)
-    // dispatch({
-    //   type: 'SELECTED_TREE',
-    //   payload: tree
-    // })
+    dispatch({
+      type: 'SELECTED_TREE',
+      payload: tree
+    })
     history.push('/edit')
   }
 

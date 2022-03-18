@@ -18,11 +18,11 @@ function DetailsPage() {
   // console.log('user is', user)
   const dispatch = useDispatch();
   const history = useHistory();
-  const [ disabled, setDisabled ] = useState(false)
+  const [disabled, setDisabled] = useState(false)
 
 
   useEffect(() => {
-checkIfFavorite(favorites, details)
+    checkIfFavorite(favorites, details)
   }, []);
 
   function checkIfFavorite(favorites, tree) {
@@ -39,10 +39,12 @@ checkIfFavorite(favorites, details)
     // console.log('tree name', tree.species)  
   }
 
+  function backToSearch() {
+    history.push('/info')
+  }
 
 
   const handleSubmit = (tree) => {
-
     console.log('favoriting tree', tree)
     checkIfFavorite(favorites, tree);
     dispatch({ type: 'POST_FAVORITE', payload: tree.id })
@@ -60,7 +62,7 @@ checkIfFavorite(favorites, details)
       <br />
 
       <button
-        disabled = {disabled}
+        disabled={disabled}
         onClick={() => handleSubmit(details)}
       >Like</button>
 
