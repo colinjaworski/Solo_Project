@@ -18,6 +18,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import DetailsPage from '../DetailsPage/DetailsPage';
+import EditPage from '../EditPage/EditPage';
 
 import './App.css';
 
@@ -75,6 +76,14 @@ function App() {
             <DetailsPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows DetailsPage else shows LoginPage
+            exact
+            path="/edit"
+          >
+            <EditPage />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
@@ -116,6 +125,8 @@ function App() {
               <LandingPage />
             }
           </Route>
+
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

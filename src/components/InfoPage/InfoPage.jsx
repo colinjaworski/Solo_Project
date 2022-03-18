@@ -24,6 +24,15 @@ function SearchPage() {
     history.push('/details')
   }
 
+  function editPage(tree) { // function dispatches selected movie and information to movie reducer
+    console.log('Tree data', tree)
+    dispatch({
+      type: 'SELECTED_TREE',
+      payload: tree
+    })
+    history.push('/edit')
+  }
+
   function handleSearch() {
     // console.log('the max height search', Number(maxHeight));
     // console.log('the max width search', Number(maxWidth));
@@ -70,6 +79,7 @@ function SearchPage() {
                   src={tree.img_url} alt=""
                   width="200" height="200"
                   onClick={() => detailsPage(tree)}
+
                 />
                 <br />
 
@@ -78,7 +88,7 @@ function SearchPage() {
                 {(function () {
                   if (authorised) {
                     return <button
-                      onClick={() => detailsPage(tree)} // this will be edit page instead of details page
+                      onClick={() => editPage(tree)} // this will be edit page instead of details page
                     >Edit</button>;
                   } else {
                     return;
