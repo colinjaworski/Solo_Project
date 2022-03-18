@@ -22,8 +22,8 @@ function UserPage() {
     dispatch({ type: 'DELETE_FAVORITE', payload: favorite })
   }
 
-  function detailsPage(tree) { // function dispatches selected movie and information to movie reducer
-    console.log('Tree data', tree)
+  function detailsPage(tree) {
+    console.log('Tree data (id)', tree.tree_id) // ******************  ID of tree from favorites
     dispatch({
       type: 'SELECTED_TREE',
       payload: tree

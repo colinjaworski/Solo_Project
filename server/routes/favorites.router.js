@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   console.log('in router.get, favorites router')
 
   if (req.isAuthenticated()) {
-    const queryText = `SELECT *
+    const queryText = `SELECT * 
         FROM "recommended_southEast_deciduous"
         JOIN "favorites"
         ON "recommended_southEast_deciduous"."id"="favorites"."tree_id" 
