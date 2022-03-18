@@ -18,12 +18,12 @@ function EditPage() {
 
     function handleSubmit(event) {
         // event.preventDefault();
-    console.log('input value', editUrl )
+    console.log('input value: ', editUrl, ', the id of the tree is', details.id) // editUrl is what is sent on button click & represents input data
         // PUT REQUEST to /students/:id
-        // axios.put(`/students/${editStudent.id}`, editStudent)
+        // axios.put(`/students/${editStudent.id}`, editUrl)
         //     .then(response => {
         //         // clean up reducer data            
-        //         dispatch({ type: 'EDIT_CLEAR' });
+        //         dispatch({ type: 'CLEAR_EDIT' });
 
         //         // refresh will happen with useEffect on Home
         //         history.push('/'); // back to list
