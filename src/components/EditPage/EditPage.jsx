@@ -8,11 +8,41 @@ function EditPage() {
     const dispatch = useDispatch();
     const history = useHistory();
     const details = useSelector((store) => store.details);
+    const editUrl = useSelector((store) => store.edit);
 
     console.log('details', details)
 
     function backToSearch() {
         history.push('/info')
+    }
+
+    function handleSubmit(event) {
+        // event.preventDefault();
+    console.log('input value', editUrl )
+        // PUT REQUEST to /students/:id
+        // axios.put(`/students/${editStudent.id}`, editStudent)
+        //     .then(response => {
+        //         // clean up reducer data            
+        //         dispatch({ type: 'EDIT_CLEAR' });
+
+        //         // refresh will happen with useEffect on Home
+        //         history.push('/'); // back to list
+        //     })
+        //     .catch(error => {
+        //         console.log('error on PUT: ', error);
+        //     })
+
+    };
+
+    function handleChange(event) {
+        dispatch({
+            type: 'EDIT_ONCHANGE',
+            payload: event.target.value
+        });
+
+       
+
+        console.log(event.target.value)
     }
 
     return (
@@ -31,13 +61,14 @@ function EditPage() {
 
             <form>
                 <input
-                    // onChange={(event) => handleChange(event)}
-                    placeholder='Tree name'
-                    value={details.img_url}
-                    type='submit'
-                    // value='Update Tree picture'
+                    onChange={(event) => handleChange(event)}
+                    placeholder={'New image url'}
+                // value={details.img_url}
+                // type='submit'
                 />
-
+                <button
+                    onClick={() => handleSubmit()}
+                >Submit</button>
             </form>
 
             <button
