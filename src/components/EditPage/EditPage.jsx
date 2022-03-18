@@ -11,9 +11,9 @@ function EditPage() {
 
     console.log('details', details)
 
-function backToSearch() {
-    history.push('/info')
-}
+    function backToSearch() {
+        history.push('/info')
+    }
 
     return (
         <div>
@@ -23,15 +23,23 @@ function backToSearch() {
                 src={details.img_url} alt=""
                 width="300" height="300" />
             <br />
-
-
-            <br />
-            <p>{details.height} feet tall and {details.width} feet wide</p>
+            {/* <p>{details.height} feet tall and {details.width} feet wide</p>
             <p>Fall color: {details.fall_color}</p>
             <p>Shade tolerance: {details.shade_tolerance}</p>
-
-            <p>{details.other_notes}</p>
+            <p>{details.other_notes}</p> */}
             <br />
+
+            <form>
+                <input
+                    // onChange={(event) => handleChange(event)}
+                    placeholder='Tree name'
+                    value={details.img_url}
+                    type='submit'
+                    // value='Update Tree picture'
+                />
+
+            </form>
+
             <button
                 onClick={() => backToSearch()}
             >Back</button>
