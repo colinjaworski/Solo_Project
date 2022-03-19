@@ -19,7 +19,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import DetailsPage from '../DetailsPage/DetailsPage';
 import EditPage from '../EditPage/EditPage';
-
+import AdminRoute from '../AdminRoute/AdminRoute';
 import './App.css';
 
 function App() {
@@ -76,13 +76,13 @@ function App() {
             <DetailsPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows DetailsPage else shows LoginPage
+          <AdminRoute
+            // logged in user with admin shows EditPage else shows LoginPage
             exact
             path="/edit"
           >
             <EditPage />
-          </ProtectedRoute>
+          </AdminRoute>
 
           <Route
             exact
