@@ -8,7 +8,7 @@ router.put('/:id', (req, res) => {
  
 
     if (req.isAuthenticated()) {
-        const queryText = `UPDATE "recommended_southEast_deciduous"
+        const queryText = `UPDATE "recommended_trees"
         SET "img_url" = $1
         WHERE "id" = $2;`;
 
