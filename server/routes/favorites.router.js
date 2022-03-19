@@ -11,9 +11,9 @@ router.get('/', (req, res) => {
 
   if (req.isAuthenticated()) {
     const queryText = `SELECT * 
-        FROM "recommended_southEast_deciduous"
+        FROM "recommended_trees"
         JOIN "favorites"
-        ON "recommended_southEast_deciduous"."id"="favorites"."tree_id" 
+        ON "recommended_trees"."id"="favorites"."tree_id" 
         JOIN "user" on "favorites"."user_id"="user"."id"
         WHERE "user"."id" = $1;`;
     pool.query(queryText, [req.user.id])

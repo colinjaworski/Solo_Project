@@ -10,7 +10,7 @@ router.get(`/:maxHeight/:maxWidth/`, (req, res) => {
     console.log(`in router.get, search router, max height: ${req.params.maxHeight}, max width: ${req.params.maxWidth}`)
 
     if (req.isAuthenticated()) {
-        const queryText = `SELECT * FROM "recommended_southEast_deciduous" 
+        const queryText = `SELECT * FROM "recommended_trees" 
         WHERE "height" <= $1 AND "width" <= $2`;
 
         pool.query(queryText, [req.params.maxHeight, req.params.maxWidth])

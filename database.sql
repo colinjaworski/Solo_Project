@@ -10,7 +10,7 @@ CREATE TABLE "user" (
     "admin" boolean default false
 );
 
-CREATE TABLE "recommended_southEast_deciduous" (
+CREATE TABLE "recommended_trees" (
 	"id" SERIAL PRIMARY KEY,
 	"species" VARCHAR (1000) NOT NULL,
 	"height" integer,
@@ -18,5 +18,13 @@ CREATE TABLE "recommended_southEast_deciduous" (
 	"fall_color" VARCHAR (1000),
 	"shade_tolerance" VARCHAR (1000),
 	"other_notes" VARCHAR (2000),
-	"img_url" VARCHAR (2000)
+	"img_url" VARCHAR (2000),
+	"region" VARCHAR (1000),
+	"deciduous" boolean default true
+);
+
+CREATE TABLE "favorites" (
+	"id" SERIAL PRIMARY KEY,
+	"user_id" int REFERENCES "user",
+	"tree_id" int REFERENCES "recommended_trees"   
 );
