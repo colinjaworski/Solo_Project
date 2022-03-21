@@ -58,7 +58,7 @@ function DetailsPage() {
 
       <img className="treePicture"
         src={details.img_url} alt=""
-        width="300" height="300" />
+        width="400" height="400" />
       <br />
 
       <button

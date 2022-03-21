@@ -8,6 +8,7 @@ function SearchPage() {
   const dispatch = useDispatch();
   const person = useSelector((store) => store.user);
   const searchResults = useSelector((store) => store.searchResults);
+  // const [deciduous, setDeciduous] = useState('');
   const [maxHeight, setMaxHeight] = useState('');
   const [maxWidth, setMaxWidth] = useState('');
   const [authorised, setAuthorised] = useState(false)
@@ -56,7 +57,8 @@ function SearchPage() {
       <div className="container">
         <p>Search New</p>
         {/* <input placeholder="region" type="text" /> */}
-        
+
+
         <input placeholder="max height" type="text"
           value={maxHeight}
           onChange={() => setMaxHeight(event.target.value)} />
@@ -75,20 +77,19 @@ function SearchPage() {
           {searchResults.map((tree, i) => {
             return (
               <div className="" key={i}>
-               
+
                 <img className="treePicture"
                   src={tree.img_url} alt=""
-                  width="200" height="200"
+                  width="300" 
+                  height="300"
                   onClick={() => detailsPage(tree)}
                 />
-
-                {/* <br /> */}
+                
                 <h5 className="treeName">{tree.species}</h5>
                 {/* Width: {tree.width}<br />
                 Height: {tree.height}<br />
                 {tree.shade_tolerance} */}
-                
-                {/* <br /> */}
+
                 {(function () {
                   if (authorised) {
                     return <button
