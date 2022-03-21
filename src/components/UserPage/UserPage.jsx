@@ -43,13 +43,13 @@ function UserPage() {
             return (
               <div key={i}>
 
-                <h5 className="treeName">{favorite.species}</h5>
+
                 <img className="treePicture"
                   src={favorite.img_url} alt=""
-                  width="200" height="200" 
+                  width="200" height="200"
                   onClick={() => detailsPage(favorite)}
-                  />
-
+                />
+                <h5 className="treeName">{favorite.species}</h5>
                 <button onClick={() => handleSubmit(favorite.tree_id)}>remove</button>
 
               </div>

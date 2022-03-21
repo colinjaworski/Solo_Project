@@ -21,7 +21,7 @@ function SearchPage() {
       type: 'SELECTED_TREE',
       payload: tree
     })
-    history.push('/details')
+    history.push(`/details`)
   }
 
   function editPage(tree) { // function dispatches selected movie and information to movie reducer
@@ -56,6 +56,7 @@ function SearchPage() {
       <div className="container">
         <p>Search New</p>
         {/* <input placeholder="region" type="text" /> */}
+        
         <input placeholder="max height" type="text"
           value={maxHeight}
           onChange={() => setMaxHeight(event.target.value)} />
@@ -74,17 +75,20 @@ function SearchPage() {
           {searchResults.map((tree, i) => {
             return (
               <div className="" key={i}>
-                <h5 className="treeName">{tree.species}</h5>
+               
                 <img className="treePicture"
                   src={tree.img_url} alt=""
                   width="200" height="200"
                   onClick={() => detailsPage(tree)}
-
                 />
-                <br />
 
-
-
+                {/* <br /> */}
+                <h5 className="treeName">{tree.species}</h5>
+                {/* Width: {tree.width}<br />
+                Height: {tree.height}<br />
+                {tree.shade_tolerance} */}
+                
+                {/* <br /> */}
                 {(function () {
                   if (authorised) {
                     return <button
