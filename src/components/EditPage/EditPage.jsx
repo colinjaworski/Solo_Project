@@ -52,7 +52,7 @@ function EditPage() {
             <h3>{details.species}</h3>
             <img className="treePicture"
                 src={details.img_url} alt=""
-                width="300" height="300" />
+                width="400" height="400" />
             <br />
             {/* <p>{details.height} feet tall and {details.width} feet wide</p>
             <p>Fall color: {details.fall_color}</p>

@@ -76,20 +76,20 @@ function SearchPage() {
         <div className="searchResults">
           {searchResults.map((tree, i) => {
             return (
-              <div className="" key={i}>
+              <div className="treeCard" key={i}>
 
                 <img className="treePicture"
                   src={tree.img_url} alt=""
-                  width="300" 
+                  width="300"
                   height="300"
                   onClick={() => detailsPage(tree)}
                 />
-                
+
+
                 <h5 className="treeName">{tree.species}</h5>
                 {/* Width: {tree.width}<br />
                 Height: {tree.height}<br />
                 {tree.shade_tolerance} */}
-
                 {(function () {
                   if (authorised) {
                     return <button
@@ -99,6 +99,7 @@ function SearchPage() {
                     return;
                   }
                 })()}
+
               </div>
 
             );
