@@ -52,13 +52,13 @@ function DetailsPage() {
   }
 
   return (
-    <div>
+    <div className="details">
       <h2>Details Page</h2>
       <h3>{details.species}</h3>
 
-      <img className="treePicture"
+      <img className="detailsTreePicture"
         src={details.img_url} alt=""
-        width="400" height="400" />
+        width="500" height="650" />
       <br />
 
       <button
@@ -66,13 +66,12 @@ function DetailsPage() {
         onClick={() => handleSubmit(details)}
       >Like</button>
 
-      <br />
+      {/* <br /> */}
       <p>{details.height} feet tall and {details.width} feet wide</p>
       <p>Fall color: {details.fall_color}</p>
       <p>Shade tolerance: {details.shade_tolerance}</p>
-
       <p>{details.other_notes}</p>
-      <br />
+      {/* <br /> */}
 
 
 
