@@ -112,7 +112,6 @@ input {
 }
 
 .searchResults {
-
     display:grid;
     grid-template-columns: auto auto auto auto auto;
     grid-gap: 15px;
@@ -121,34 +120,55 @@ input {
 }
 
 .treePicture {
-    /* box-shadow: -20px -20px 100px 1px rgba(134, 134, 134, 0.294); */
-    border-style: solid;
-    border-width: 1px;
+    box-shadow: 5px 5px 20px 1px rgba(102, 102, 102, 0.479);
+    /* border-style: solid;
+    border-width: 1px; */
     object-fit: cover;
-    z-index: 2;
+    z-index: 1;
+    border-radius: 15px;
+    position:relative;
+    /* animation: move 3s  */
 }
 
 .treePicture:hover {
-  /* object-fit: cover; */
-  opacity: .7;
+  opacity: .5;
   cursor: pointer;
+  z-index: 0;
 }
 
 .treeName {
   text-align: center;
   /* border-style: solid;
   border-width: 1px; */
-  max-width: 300px;
-  margin-bottom: 0;
-  margin-top: 0;
+  border-radius: 15px;
+  min-height: 50px;
+  max-width: 298px;
+  margin-top: -354px;
+  margin-bottom: 300px;
+  z-index: 0;
+  position:relative;
+  /* backdrop-filter: blur(3px); */
 }
 
-.treeCard {
-    /* border-style: solid;
-  border-width: 1px; */
-  max-height: 400px;
-  padding-bottom: 15px;
+.treeName:hover {
+  color:rgb(0, 0, 0);
+  z-index: 2;
+  cursor: pointer;
 }
 
+/* ********************************************** Details Page ***************************************** */
+@keyframes move {
+  from {left: 1000px; top: 1000px}
+  to {left: 0px; top: 0px}
+}
 
+.detailsTreePicture {
+  position: relative;
+  animation: move 2s; 
+  border-radius: 15px;
+}
 
+.details{
+  display: grid;
+  grid-template-columns: auto ;
+  }

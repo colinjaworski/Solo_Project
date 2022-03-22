@@ -81,15 +81,18 @@ function SearchPage() {
                 <img className="treePicture"
                   src={tree.img_url} alt=""
                   width="300"
-                  height="300"
+                  height="350"
                   onClick={() => detailsPage(tree)}
                 />
 
-
-                <h5 className="treeName">{tree.species}</h5>
-                {/* Width: {tree.width}<br />
-                Height: {tree.height}<br />
-                {tree.shade_tolerance} */}
+                <h4 className="treeName"
+                onClick={() => detailsPage(tree)}
+                >
+                {tree.species}<br/> 
+                {/* Max height: {tree.width}+<br/> 
+                Max width: {tree.height}+<br/>   */}
+                Shade tolerant? {tree.shade_tolerance}</h4>
+                        
                 {(function () {
                   if (authorised) {
                     return <button
