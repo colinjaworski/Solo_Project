@@ -114,24 +114,41 @@ input {
 .searchResults {
 
     display:grid;
-    grid-template-columns: 15% 15% 15% 15% 15% 15%;
-    /* grid-template-rows: 50% 50%; */
+    grid-template-columns: auto auto auto auto auto;
     grid-gap: 15px;
     padding: 5px;
     margin: 5px;  
 }
 
 .treePicture {
-    /* box-shadow: -20px -20px 100px 1px rgba(134, 134, 134, 0.294);
-    padding-top: 0px;
-    padding-bottom: 10px; */
-  border-style: solid;
-  border-width: 1px;
+    /* box-shadow: -20px -20px 100px 1px rgba(134, 134, 134, 0.294); */
+    border-style: solid;
+    border-width: 1px;
+    object-fit: cover;
+    z-index: 2;
+}
 
+.treePicture:hover {
+  /* object-fit: cover; */
+  opacity: .7;
+  cursor: pointer;
 }
 
 .treeName {
   text-align: center;
-  border-style: solid;
-  border-width: 1px;
+  /* border-style: solid;
+  border-width: 1px; */
+  max-width: 300px;
+  margin-bottom: 0;
+  margin-top: 0;
 }
+
+.treeCard {
+    /* border-style: solid;
+  border-width: 1px; */
+  max-height: 400px;
+  padding-bottom: 15px;
+}
+
+
+

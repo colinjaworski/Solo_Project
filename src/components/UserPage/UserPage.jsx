@@ -46,7 +46,7 @@ function UserPage() {
 
                 <img className="treePicture"
                   src={favorite.img_url} alt=""
-                  width="200" height="200"
+                  width="300" height="300"
                   onClick={() => detailsPage(favorite)}
                 />
                 <h5 className="treeName">{favorite.species}</h5>
