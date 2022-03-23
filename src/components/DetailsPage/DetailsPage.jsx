@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import Fab from '@mui/material/Fab';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -75,14 +77,15 @@ function DetailsPage() {
 
         {(function () {
           if (!disabled) {
-            return <FavoriteBorderRoundedIcon className="favoriteIcon" onClick={() => handleSubmit(details)} />;
+            return <Fab color="primary" aria-label="like"><FavoriteIcon onClick={() => handleSubmit(details)}/></Fab>;
           } else {
-            return <FavoriteRoundedIcon className="favoriteIcon" />;
+            return  <Fab disabled aria-label="like"><FavoriteIcon /></Fab>;
           }
         })()}
         <br />
         <br />
-
+        {/* <FavoriteBorderRoundedIcon  onClick={() => handleSubmit(details)} /> */}
+        {/* <FavoriteRoundedIcon className="favoriteIcon" /> */}
         <button
           onClick={() => backToSearch()}
         >Back</button>

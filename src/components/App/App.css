@@ -227,8 +227,8 @@ input {
   animation: flicker .5s ease alternate infinite;
 }
 
-.favoriteIcon {
-  position: absolute;
+.likeButton {
+  /* position: absolute; */
   color: rgb(255, 0, 85);
   /* animation: flicker .5s ease alternate infinite; */
 }

@@ -6,7 +6,54 @@ import Brightness6SharpIcon from '@mui/icons-material/Brightness6Sharp';
 import Brightness5SharpIcon from '@mui/icons-material/Brightness5Sharp';
 import Alert from '@mui/material/Alert';
 
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Chip from '@mui/material/Chip';
+
 function SearchPage() {
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  const treeType = [
+    'Deciduous',
+    'Evergreen',
+  ];
+
+  function getStyles(name, personName, theme) {
+    return {
+      fontWeight:
+        personName.indexOf(name) === -1
+          ? theme.typography.fontWeightRegular
+          : theme.typography.fontWeightMedium,
+    };
+  }
+
+
+  const theme = useTheme();
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -72,8 +119,42 @@ function SearchPage() {
           onChange={() => setMaxWidth(event.target.value)} />
 
         <button
-          onClick={() => handleSearch()} // pass in input values here????????????????
+          onClick={() => handleSearch()}
         >Submit</button>
+
+       
+        <div>
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel id="demo-multiple-chip-label">Type</InputLabel>
+            <Select
+              labelId="demo-multiple-chip-label"
+              id="demo-multiple-chip"
+              multiple
+              value={personName}
+              onChange={handleChange}
+              input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+              renderValue={(selected) => (
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </Box>
+              )}
+              MenuProps={MenuProps}
+            >
+              {treeType.map((name) => (
+                <MenuItem
+                  key={name}
+                  value={name}
+                  style={getStyles(name, personName, theme)}
+                >
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+
 
 
 
@@ -93,13 +174,12 @@ function SearchPage() {
                   onClick={() => detailsPage(tree)}>
 
                   {tree.species}<br />
-                  {/* Max height: {tree.width}+<br />
-                  Max width: {tree.height}+<br /> */}
-                  Shade tolerant? {tree.shade_tolerance}
+                  Max height: {tree.width}+<br />
+                  Max width: {tree.height}+<br />
+                  {/* Shade tolerant? {tree.shade_tolerance} */}
                 </h4>
 
                 {(function () {
-                  console.log('shade tolerance', tree.shade_tolerance)
                   if (tree.shade_tolerance === 'Yes') {
                     return <Brightness5SharpIcon
                       className="shadeIcon"
@@ -117,12 +197,12 @@ function SearchPage() {
                   />
                 })()}
 
-                {/* <Alert variant="outlined" severity="info"></Alert> */}
+                {/* <Alert variant="outlined" severity="info">hi there</Alert> use in place of alert for shade_tolerance */}
 
                 {(function () {
                   if (authorised) {
                     return <button
-                      onClick={() => editPage(tree)} // this will be edit page instead of details page
+                      onClick={() => editPage(tree)}
                     >Edit</button>;
                   } else {
                     return;
