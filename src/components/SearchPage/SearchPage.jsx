@@ -179,7 +179,7 @@ function SearchPage() {
                   {/* Shade tolerant? {tree.shade_tolerance} */}
                 </h4>
 
-                {(function () {
+                {/* {(function () {
                   if (tree.shade_tolerance === 'Yes') {
                     return <Brightness5SharpIcon
                       className="shadeIcon"
@@ -193,9 +193,9 @@ function SearchPage() {
                   } else (tree.shade_tolerance === 'Partial')
                   return <Brightness6SharpIcon
                     className="shadeIcon"
-                    onClick={() => alert('I can do well in both sunny and shady aereas')}
+                    onClick={() => alert('I can do well in both sunny and shady areas')}
                   />
-                })()}
+                })()} */}
 
                 {/* <Alert variant="outlined" severity="info">hi there</Alert> use in place of alert for shade_tolerance */}
 

@@ -122,7 +122,7 @@ input {
 }
 
 .treePicture {
-  box-shadow: 10px 10px 15px 0px rgba(82, 82, 82, 0.733);
+  box-shadow: 2px 2px 20px 0px rgba(82, 82, 82, 0.733);
     /* border-style: solid;
     border-width: 1px; */
     object-fit: cover;
