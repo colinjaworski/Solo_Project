@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
+import Brightness7SharpIcon from '@mui/icons-material/Brightness7Sharp';
+import Brightness6SharpIcon from '@mui/icons-material/Brightness6Sharp';
+import Brightness5SharpIcon from '@mui/icons-material/Brightness5Sharp';
+import Alert from '@mui/material/Alert';
 
 function SearchPage() {
 
@@ -86,13 +90,35 @@ function SearchPage() {
                 />
 
                 <h4 className="treeName"
-                onClick={() => detailsPage(tree)}
-                >
-                {tree.species}<br/> 
-                {/* Max height: {tree.width}+<br/> 
-                Max width: {tree.height}+<br/>   */}
-                Shade tolerant? {tree.shade_tolerance}</h4>
-                        
+                  onClick={() => detailsPage(tree)}>
+
+                  {tree.species}<br />
+                  {/* Max height: {tree.width}+<br />
+                  Max width: {tree.height}+<br /> */}
+                  Shade tolerant? {tree.shade_tolerance}
+                </h4>
+
+                {(function () {
+                  console.log('shade tolerance', tree.shade_tolerance)
+                  if (tree.shade_tolerance === 'Yes') {
+                    return <Brightness5SharpIcon
+                      className="shadeIcon"
+                      onClick={() => alert('I am tolerant of shade')}
+                    />;
+                  } else if (tree.shade_tolerance === 'No') {
+                    return <Brightness7SharpIcon
+                      className="shadeIcon"
+                      onClick={() => alert('I prefer full sun')}
+                    />;
+                  } else (tree.shade_tolerance === 'Partial')
+                  return <Brightness6SharpIcon
+                    className="shadeIcon"
+                    onClick={() => alert('I can do well in both sunny and shady aereas')}
+                  />
+                })()}
+
+                {/* <Alert variant="outlined" severity="info"></Alert> */}
+
                 {(function () {
                   if (authorised) {
                     return <button
