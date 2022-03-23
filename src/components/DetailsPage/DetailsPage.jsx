@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import './DetailsPage.css';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import FavoriteIcon from '@mui/icons-material/Favorite';
