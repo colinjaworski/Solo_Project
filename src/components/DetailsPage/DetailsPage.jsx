@@ -53,31 +53,36 @@ function DetailsPage() {
 
   return (
     <div className="details">
-      <h2>Details Page</h2>
-      <h3>{details.species}</h3>
+      <h2 className="detailsName">{details.species}</h2>
+      <h3></h3>
 
       <img className="detailsTreePicture"
         src={details.img_url} alt=""
-        width="500" height="650" />
-      <br />
-
+        width="500" height="600" />
+        
       <button
+        className="likeButton"
         disabled={disabled}
         onClick={() => handleSubmit(details)}
-      >Like</button>
+      >❤️</button>
+      <br />
 
-      {/* <br /> */}
-      <p>{details.height} feet tall and {details.width} feet wide</p>
-      <p>Fall color: {details.fall_color}</p>
-      <p>Shade tolerance: {details.shade_tolerance}</p>
-      <p>{details.other_notes}</p>
-      {/* <br /> */}
+      <div className="detailsInfo">
 
 
+        {/* <br /> */}
+        <p>{details.height} feet tall and {details.width} feet wide</p>
+        <p>Fall color: {details.fall_color}</p>
+        <p>Shade tolerance: {details.shade_tolerance}</p>
+        <p>{details.other_notes}</p>
+        {/* <br /> */}
 
-      <button
-        onClick={() => backToSearch()}
-      >Back</button>
+
+
+        <button
+          onClick={() => backToSearch()}
+        >Back</button>
+      </div>
     </div>
   );
 }

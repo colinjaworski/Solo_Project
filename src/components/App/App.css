@@ -7,6 +7,7 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  
 }
 
 img {
@@ -105,6 +106,7 @@ Form Treatment
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
+/* ********************************************** My Stuff ************************************* */
 
 input {
   margin: 5px;
@@ -120,7 +122,7 @@ input {
 }
 
 .treePicture {
-    box-shadow: 5px 5px 20px 1px rgba(102, 102, 102, 0.479);
+  box-shadow: 10px 10px 15px 0px rgba(82, 82, 82, 0.733);
     /* border-style: solid;
     border-width: 1px; */
     object-fit: cover;
@@ -157,20 +159,71 @@ input {
 }
 
 /* ********************************************** Details Page ***************************************** */
-@keyframes move {
-  from {left: 1000px; top: 1000px}
-  to {left: 0px; top: 0px}
+@keyframes movePicture {
+  from {left: 1000px}
+  to {left: 0px}
+}
+@keyframes moveLike {
+  from {left: 1000px}
+  to {left: 35px}
+}
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
+.detailsName {
+  position: relative;
+  text-align: center;
+  grid-column-start: 2;
+  max-width:max-content;
+}
 .detailsTreePicture {
   position: relative;
-  animation: move 2s; 
+  animation: movePicture 1s;
+  object-fit: cover;
   border-radius: 15px;
+  grid-column-start: 2;
+  min-width: fit-content;
+  box-shadow: 10px 10px 15px 0px rgba(82, 82, 82, 0.733);
+
 }
 
 .details{
   display: grid;
-  grid-template-columns: auto ;
+  grid-template-columns: 20px max-content 20px 500px;
+  grid-template-rows: auto auto;
   }
 
-  /* **********************************************
+.detailsInfo {
+  grid-column-start: 4;
+  grid-row-start: 2;
+  padding-left: 20px;
+  font-size: large;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 15px 0px rgba(82, 82, 82, 0.733);
+}
+
+.likeButton {
+  position: absolute;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: xx-large;
+  z-index: 0;
+  bottom: 565px;
+  left: 35px;
+  /* animation: moveLike 1s;  */
+  animation-delay: 2s;
+}
+
+.likeButton:hover {
+  cursor: pointer;
+  animation: flicker .5s ease alternate infinite;
+
+}
