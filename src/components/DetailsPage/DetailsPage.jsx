@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -54,22 +56,16 @@ function DetailsPage() {
   return (
     <div className="details">
       <h2 className="detailsName">{details.species}</h2>
-      <h3></h3>
+
+      {/* <FavoriteRoundedIcon className="favoriteIcon"/> */}
+      {/* <FavoriteBorderRoundedIcon className="favoriteIcon"/> */}
 
       <img className="detailsTreePicture"
         src={details.img_url} alt=""
         width="500" height="600" />
-        
-      <button
-        className="likeButton"
-        disabled={disabled}
-        onClick={() => handleSubmit(details)}
-      >❤️</button>
-      <br />
+
 
       <div className="detailsInfo">
-
-
         {/* <br /> */}
         <p>{details.height} feet tall and {details.width} feet wide</p>
         <p>Fall color: {details.fall_color}</p>
@@ -77,11 +73,20 @@ function DetailsPage() {
         <p>{details.other_notes}</p>
         {/* <br /> */}
 
-
+        {(function () {
+          if (!disabled) {
+            return <FavoriteBorderRoundedIcon className="favoriteIcon" onClick={() => handleSubmit(details)} />;
+          } else {
+            return <FavoriteRoundedIcon className="favoriteIcon" />;
+          }
+        })()}
+        <br />
+        <br />
 
         <button
           onClick={() => backToSearch()}
         >Back</button>
+
       </div>
     </div>
   );
