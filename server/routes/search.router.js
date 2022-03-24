@@ -5,15 +5,15 @@ const router = express.Router();
 /**
  * GET * trees for user
  */
-router.get(`/:maxHeight/:maxWidth/`, (req, res) => {
+router.get(`/:deciduous/:maxHeight/:maxWidth/`, (req, res) => {
 
-    console.log(`in router.get, search router, max height: ${req.params.maxHeight}, max width: ${req.params.maxWidth}`)
+    console.log('in router.get', req.params.deciduous)
 
     if (req.isAuthenticated()) {
         const queryText = `SELECT * FROM "recommended_trees" 
-        WHERE "height" <= $1 AND "width" <= $2`;
+        WHERE "deciduous" = $1 AND "height" <= $2 AND "width" <= $3`;
 
-        pool.query(queryText, [req.params.maxHeight, req.params.maxWidth])
+        pool.query(queryText, [req.params.deciduous, req.params.maxHeight, req.params.maxWidth])
 
             .then((result) => {
                 res.send(result.rows)
