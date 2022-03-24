@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
-import Brightness7SharpIcon from '@mui/icons-material/Brightness7Sharp';
-import Brightness6SharpIcon from '@mui/icons-material/Brightness6Sharp';
-import Brightness5SharpIcon from '@mui/icons-material/Brightness5Sharp';
-import Alert from '@mui/material/Alert';
-
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -15,50 +10,56 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 
+// type of tree dropdown start ------------------------------------
+
 function SearchPage() {
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
-      },
-    },
-  };
+  
+  // const ITEM_HEIGHT = 48;
+  // const ITEM_PADDING_TOP = 8;
+  // const MenuProps = {
+  //   PaperProps: {
+  //     style: {
+  //       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+  //       width: 250,
+  //     },
+  //   },
+  // };
 
-  const treeType = [
-    'Deciduous',
-    'Evergreen',
-  ];
+  // const treeType = [
+  //   'Deciduous',
+  //   'Evergreen',
+  // ];
 
-  function getStyles(name, personName, theme) {
-    return {
-      fontWeight:
-        personName.indexOf(name) === -1
-          ? theme.typography.fontWeightRegular
-          : theme.typography.fontWeightMedium,
-    };
-  }
+  // function getStyles(taco, personName, theme) {
+  //   return {
+  //     fontWeight:
+  //       personName.indexOf(taco) === -1
+  //         ? theme.typography.fontWeightRegular
+  //         : theme.typography.fontWeightMedium,
+  //   };
+  // }
 
+  // const theme = useTheme();
+  // const [personName, setPersonName] = React.useState([]);
 
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  // const handleChange = (event) => {
+  //   const {
+  //     target: { value },
+  //   } = event;
+  //   setPersonName(
+  //     // On autofill we get a stringified value.
+  //     typeof value === 'string' ? value.split(',') : value,
+  //   );
+  // };
 
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
-  };
+  // type of tree dropdown end ------------------------------------
+
 
   const history = useHistory();
   const dispatch = useDispatch();
   const person = useSelector((store) => store.user);
   const searchResults = useSelector((store) => store.searchResults);
+  const favorites = useSelector((store) => store.favorites);
   // const [deciduous, setDeciduous] = useState('');
   const [maxHeight, setMaxHeight] = useState('');
   const [maxWidth, setMaxWidth] = useState('');
@@ -66,6 +67,7 @@ function SearchPage() {
   useEffect(() => {
     isAuthorized()
   }, []);
+
 
   function detailsPage(tree) { // function dispatches selected movie and information to movie reducer
     console.log('Tree data', tree)
@@ -75,7 +77,6 @@ function SearchPage() {
     })
     history.push(`/details`)
   }
-
   function editPage(tree) { // function dispatches selected movie and information to movie reducer
     console.log('Tree data', tree)
     dispatch({
@@ -84,32 +85,25 @@ function SearchPage() {
     })
     history.push('/edit')
   }
-
-  function handleSearch() {
-    // console.log('the max height search', Number(maxHeight));
-    // console.log('the max width search', Number(maxWidth));
-
+  function handleSearch() { // function sends height and width for get request
     dispatch({
       type: 'FETCH_SEARCH_RESULTS',
-      payload: { maxHeight: maxHeight, maxWidth: maxWidth }   // sending height and width for tree GET request
-    });
-    // maxHeight: maxHeight, 
+      payload: { maxHeight: maxHeight, maxWidth: maxWidth }  
+    }); 
   }
-
-  function isAuthorized() {
+  function isAuthorized() { // function checks if a person is authorized and sets value of authorized to true or false
     if (person.id === 1) {
       console.log('this user is authorized!!!')
       setAuthorised(true)
     }
   }
 
+
   return (
     <>
       <div className="container">
         <p>Search New</p>
-        {/* <input placeholder="region" type="text" /> */}
-
-
+        
         <input placeholder="max height" type="text"
           value={maxHeight}
           onChange={() => setMaxHeight(event.target.value)} />
@@ -122,8 +116,9 @@ function SearchPage() {
           onClick={() => handleSearch()}
         >Submit</button>
 
-       
-        <div>
+
+        {/* drop down for deciduous or evergreen  */}
+        {/* <div>
           <FormControl sx={{ m: 1, width: 300 }}>
             <InputLabel id="demo-multiple-chip-label">Type</InputLabel>
             <Select
@@ -153,13 +148,11 @@ function SearchPage() {
               ))}
             </Select>
           </FormControl>
-        </div>
-
-
-
+        </div> */}
 
         <div className="searchResults">
           {searchResults.map((tree, i) => {
+
             return (
               <div className="treeCard" key={i}>
 

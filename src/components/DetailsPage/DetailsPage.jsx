@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './DetailsPage.css';
-import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Fab from '@mui/material/Fab';
+
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -39,21 +38,17 @@ function DetailsPage() {
         setDisabled(true);
       }
     }
-    // console.log('selected tree is', tree.id) // from home, this one represents user id, from search results, it is tree id
-    // console.log('selected tree is 2', tree.tree_id ) // from home this one represents tree id, from search results, it is undefind
-    // console.log('tree name', tree.species)  
   }
 
   function backToSearch() {
     history.push('/info')
   }
 
-
   const handleSubmit = (tree) => {
     console.log('favoriting tree', tree)
     checkIfFavorite(favorites, tree);
     dispatch({ type: 'POST_FAVORITE', payload: tree.id })
-    history.push('/info')
+    // history.push('/info')
   }
 
   return (
@@ -78,9 +73,9 @@ function DetailsPage() {
 
         {(function () {
           if (!disabled) {
-            return <Fab color="primary" aria-label="like"><FavoriteIcon onClick={() => handleSubmit(details)}/></Fab>;
+            return <Fab color="primary" aria-label="like"><FavoriteIcon onClick={() => handleSubmit(details)} /></Fab>;
           } else {
-            return  <Fab disabled aria-label="like"><FavoriteIcon /></Fab>;
+            return <Fab disabled aria-label="like"><FavoriteIcon /></Fab>;
           }
         })()}
         <br />

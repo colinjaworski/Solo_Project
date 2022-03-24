@@ -45,8 +45,6 @@
     grid-column-start: 2;
     min-width: fit-content;
     box-shadow: 2px 2px 20px 0px rgba(82, 82, 82, 0.733);
-    animation: flicker .5s ease alternate infinite;
-
   }
   
   .details{
