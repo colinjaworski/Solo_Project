@@ -21,7 +21,8 @@ function SearchPage() {
   const [deciduous, setDeciduous] = useState('');
   const [maxHeight, setMaxHeight] = useState('');
   const [maxWidth, setMaxWidth] = useState('');
-  const [authorised, setAuthorised] = useState(false)
+  const [shadeTolerance, setShadeTolerance] = useState('');
+  const [authorised, setAuthorised] = useState(false);
 
   useEffect(() => {
     isAuthorized()
@@ -48,7 +49,7 @@ function SearchPage() {
     console.log('is deciduous?', deciduous)
     dispatch({
       type: 'FETCH_SEARCH_RESULTS',
-      payload: { deciduous: deciduous, maxHeight: maxHeight, maxWidth: maxWidth }
+      payload: { deciduous: deciduous, shadeTolerance: shadeTolerance, maxHeight: maxHeight, maxWidth: maxWidth }
     });
   }
   function isAuthorized() { // function checks if a person is authorized and sets value of authorized to true or false
@@ -69,6 +70,14 @@ function SearchPage() {
         id="treeType" name="treeType" >
           <option value="TRUE">Deciduous</option>
           <option value="FALSE">Evergreen</option>
+        </select>
+
+        <select 
+        onChange={() => setShadeTolerance(event.target.value)}
+        id="shadeType" name="shadeType" >
+          <option value="Yes">Shade</option>
+          <option value="Partial">Either </option>
+          <option value="No">Sun</option>
         </select>
 
         <input placeholder="max height" type="text"
