@@ -46,10 +46,10 @@ function SearchPage() {
     history.push('/edit')
   }
   function handleSearch() { // function sends height and width for get request
-    console.log('is deciduous?', deciduous)
+    console.log('In handleSearch function', deciduous, shadeTolerance, maxHeight, maxWidth)
     dispatch({
       type: 'FETCH_SEARCH_RESULTS',
-      payload: { deciduous: deciduous, shadeTolerance: shadeTolerance, maxHeight: maxHeight, maxWidth: maxWidth }
+      payload: { deciduous: deciduous, shadeTolerance: shadeTolerance, maxHeight: maxHeight, maxWidth: maxWidth}
     });
   }
   function isAuthorized() { // function checks if a person is authorized and sets value of authorized to true or false
@@ -64,17 +64,16 @@ function SearchPage() {
     <>
       <div className="container">
         <p>Search New</p>
-
-        <select 
-        onChange={() => setDeciduous(event.target.value)}
-        id="treeType" name="treeType" >
+        <select
+          onChange={(event) => setDeciduous(event.target.value)}
+          id="treeType" name="treeType" >
           <option value="TRUE">Deciduous</option>
           <option value="FALSE">Evergreen</option>
         </select>
 
-        <select 
-        onChange={() => setShadeTolerance(event.target.value)}
-        id="shadeType" name="shadeType" >
+        <select
+          onChange={(event) => setShadeTolerance(event.target.value)}
+          id="shadeType" name="shadeType" >
           <option value="Yes">Shade</option>
           <option value="Partial">Either </option>
           <option value="No">Sun</option>
@@ -82,11 +81,12 @@ function SearchPage() {
 
         <input placeholder="max height" type="text"
           value={maxHeight}
-          onChange={() => setMaxHeight(event.target.value)} />
+          onChange={(event) => setMaxHeight(event.target.value)} />
 
         <input placeholder="max width" type="text"
           value={maxWidth}
-          onChange={() => setMaxWidth(event.target.value)} />
+          onChange={(event) => setMaxWidth(event.target.value)} />
+
 
         <button onClick={() => handleSearch()} >Submit</button>
 

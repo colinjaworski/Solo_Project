@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get(`/:deciduous/:shadeTolerance/:maxHeight/:maxWidth/`, (req, res) => {
 
-    console.log('in router.get', req.params.shadeTolerance)
+    console.log('in router.get', req.params.orderBy)
 
     if (req.isAuthenticated()) {
         const queryText = `SELECT * FROM "recommended_trees" 
