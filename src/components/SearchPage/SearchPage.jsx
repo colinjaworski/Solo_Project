@@ -63,10 +63,11 @@ function SearchPage() {
   return (
     <>
       <div className="container">
-        <p>Search New</p>
+        <p>Search New Trees!</p>
         <select
           onChange={(event) => setDeciduous(event.target.value)}
           id="treeType" name="treeType" >
+            <option>Tree type</option>
           <option value="TRUE">Deciduous</option>
           <option value="FALSE">Evergreen</option>
         </select>
@@ -74,6 +75,7 @@ function SearchPage() {
         <select
           onChange={(event) => setShadeTolerance(event.target.value)}
           id="shadeType" name="shadeType" >
+            <option>Shade Tolerance</option>
           <option value="Yes">Shade</option>
           <option value="Partial">Either </option>
           <option value="No">Sun</option>
