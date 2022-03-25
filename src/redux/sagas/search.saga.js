@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* getSearchResults(action) { 
 
     try {
-        const response = yield axios.get(`/api/search/${action.payload.maxHeight}/${action.payload.maxWidth}`);
+        const response = yield axios.get(`/api/search/${action.payload.deciduous}/${action.payload.shadeTolerance}/${action.payload.maxHeight}/${action.payload.maxWidth}/`);
         yield put({ type: 'SET_SEARCH_RESULTS', payload: response.data });
 
 

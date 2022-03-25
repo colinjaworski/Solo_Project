@@ -21,13 +21,13 @@ function EditPage() {
     function handleSubmit(event) {
         // event.preventDefault();
         console.log('input value: ', editUrl, ', the id of the tree is', details.id) // editUrl is what is sent on button click & represents input data
-        
+
         dispatch({
             type: 'EDIT_TREE',
             payload: {
                 editUrl: editUrl,
                 detailsId: detailsId,
-            
+
             }
         });
 
@@ -48,33 +48,26 @@ function EditPage() {
 
     return (
         <div>
-            <h2>You are in the edit page!!!</h2>
-            <h3>{details.species}</h3>
+            <h2>{details.species}</h2>
             <img className="treePicture"
                 src={details.img_url} alt=""
                 width="400" height="500" />
             <br />
-            {/* <p>{details.height} feet tall and {details.width} feet wide</p>
-            <p>Fall color: {details.fall_color}</p>
-            <p>Shade tolerance: {details.shade_tolerance}</p>
-            <p>{details.other_notes}</p> */}
-            <br />
-
             <form>
-                <input
-                    onChange={(event) => handleChange(event)}
-                    placeholder={'New image url'}
-                // value={details.img_url}
-                // type='submit'
-                />
-                <button
-                    onClick={() => handleSubmit()}
-                >Submit</button>
+                <input defaultValue={details.img_url} onChange={(event) => handleChange(event)} placeholder={'New image url'}/>
             </form>
+            
+            <input defaultValue={details.height}></input>Feet tall <br />
+            <input value={details.width}></input>Feet wide  <br />
+            <input value={details.fall_color}></input> Fall color <br />
+            <input value={details.shade_tolerance}></input> Shade tolerance<br />
+            <input value={details.other_notes} ></input> Details<br />
+            <br />
+            <button onClick={() => handleSubmit()}>Submit</button><br/>
 
-            <button
+            {/* <button
                 onClick={() => backToSearch()}
-            >Back</button>
+            >Back</button> */}
         </div>
     );
 }

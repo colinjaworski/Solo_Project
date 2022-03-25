@@ -22,7 +22,7 @@ function DetailsPage() {
   // console.log('user is', user)
   const dispatch = useDispatch();
   const history = useHistory();
-  const [disabled, setDisabled] = useState(false)
+  const [disabled, setDisabled] = useState('')
 
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function DetailsPage() {
     for (let item of favorites) {
       // console.log('the favorite names are', item.species)
       if (item.species === tree.species) {
-        console.log('WEEEEE HAVE A MATCH!!!')
+        // console.log('WEEEEE HAVE A MATCH!!!')
         setDisabled(true);
       }
     }
@@ -48,15 +48,13 @@ function DetailsPage() {
     console.log('favoriting tree', tree)
     checkIfFavorite(favorites, tree);
     dispatch({ type: 'POST_FAVORITE', payload: tree.id })
-    // history.push('/info')
+    history.push('/info')
+    
   }
 
   return (
     <div className="details">
       <h2 className="detailsName">{details.species}</h2>
-
-      {/* <FavoriteRoundedIcon className="favoriteIcon"/> */}
-      {/* <FavoriteBorderRoundedIcon className="favoriteIcon"/> */}
 
       <img className="detailsTreePicture"
         src={details.img_url} alt=""
@@ -80,8 +78,7 @@ function DetailsPage() {
         })()}
         <br />
         <br />
-        {/* <FavoriteBorderRoundedIcon  onClick={() => handleSubmit(details)} /> */}
-        {/* <FavoriteRoundedIcon className="favoriteIcon" /> */}
+
         <button
           onClick={() => backToSearch()}
         >Back</button>
