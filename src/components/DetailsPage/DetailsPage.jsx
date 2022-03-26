@@ -48,7 +48,7 @@ function DetailsPage() {
     console.log('favoriting tree', tree)
     checkIfFavorite(favorites, tree);
     dispatch({ type: 'POST_FAVORITE', payload: tree.id })
-    history.push('/info')
+    setDisabled(!disabled)
     
   }
 
@@ -71,7 +71,7 @@ function DetailsPage() {
 
         {(function () {
           if (!disabled) {
-            return <Fab color="primary" aria-label="like"><FavoriteIcon onClick={() => handleSubmit(details)} /></Fab>;
+            return <Fab color="primary" aria-label="like"><FavoriteIcon onClick={() =>  handleSubmit(details)} /></Fab>;
           } else {
             return <Fab disabled aria-label="like"><FavoriteIcon /></Fab>;
           }
