@@ -31,8 +31,8 @@ function EditPage() {
             }
         });
 
-
-        console.log('after dispatch in handle submit')
+        history.push('/info')
+        // console.log('after dispatch in handle submit')
     };
 
     function handleChange(event) {

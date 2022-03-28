@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
+
 
 
 function SearchPage() {
@@ -46,7 +39,7 @@ function SearchPage() {
     history.push('/edit')
   }
   function handleSearch() { // function sends height and width for get request
-    console.log('In handleSearch function', deciduous, shadeTolerance, maxHeight, maxWidth)
+
     dispatch({
       type: 'FETCH_SEARCH_RESULTS',
       payload: { deciduous: deciduous, shadeTolerance: shadeTolerance, maxHeight: maxHeight, maxWidth: maxWidth}
@@ -54,7 +47,7 @@ function SearchPage() {
   }
   function isAuthorized() { // function checks if a person is authorized and sets value of authorized to true or false
     if (person.id === 1) {
-      console.log('this user is authorized!!!')
+      // console.log('this user is authorized!!!')
       setAuthorised(true)
     }
   }
@@ -75,10 +68,10 @@ function SearchPage() {
         <select
           onChange={(event) => setShadeTolerance(event.target.value)}
           id="shadeType" name="shadeType" >
-            <option>Shade Tolerance</option>
-          <option value="Yes">Shade</option>
-          <option value="Partial">Either </option>
-          <option value="No">Sun</option>
+            <option>Site conditions</option>
+          <option value="Yes">Mostly shade</option>
+          <option value="Partial">Partial </option>
+          <option value="No">Full sun</option>
         </select>
 
         <input placeholder="max height" type="text"
@@ -111,28 +104,11 @@ function SearchPage() {
                   onClick={() => detailsPage(tree)}>
 
                   {tree.species}<br />
-                  Max height: {tree.width}+<br />
-                  Max width: {tree.height}+<br />
+                  {/* Max height: {tree.height}+<br />
+                  Max width: {tree.width}+<br /> */}
                   {/* Shade tolerant? {tree.shade_tolerance} */}
                 </h4>
 
-                {/* {(function () {
-                  if (tree.shade_tolerance === 'Yes') {
-                    return <Brightness5SharpIcon
-                      className="shadeIcon"
-                      onClick={() => alert('I am tolerant of shade')}
-                    />;
-                  } else if (tree.shade_tolerance === 'No') {
-                    return <Brightness7SharpIcon
-                      className="shadeIcon"
-                      onClick={() => alert('I prefer full sun')}
-                    />;
-                  } else (tree.shade_tolerance === 'Partial')
-                  return <Brightness6SharpIcon
-                    className="shadeIcon"
-                    onClick={() => alert('I can do well in both sunny and shady areas')}
-                  />
-                })()} */}
 
                 {/* <Alert variant="outlined" severity="info">hi there</Alert> use in place of alert for shade_tolerance */}
 

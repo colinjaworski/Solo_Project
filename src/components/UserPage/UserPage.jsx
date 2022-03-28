@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
-
+import ClearIcon from '@mui/icons-material/Clear';
 
 function UserPage() {
 
@@ -18,8 +18,13 @@ function UserPage() {
   // console.log('favorites', favorites);
 
   const handleSubmit = (favorite) => {
-    console.log('removing tree', favorite)
-    dispatch({ type: 'DELETE_FAVORITE', payload: favorite })
+    // console.log('removing tree', favorite)
+    let text = "Are you sure you want to delete this tree?";
+    if (confirm(text) == true) {
+      dispatch({ type: 'DELETE_FAVORITE', payload: favorite })
+    } else {
+      console.log('you canceled');
+    }
   }
 
   function detailsPage(tree) {
@@ -50,8 +55,8 @@ function UserPage() {
                   onClick={() => detailsPage(favorite)}
                 />
                 <h5 className="treeName">{favorite.species}</h5>
-                <button onClick={() => handleSubmit(favorite.tree_id)}>remove</button>
-
+                {/* <button >remove</button> */}
+                <ClearIcon onClick={() => handleSubmit(favorite.tree_id)}/>
               </div>
             );
           })}
