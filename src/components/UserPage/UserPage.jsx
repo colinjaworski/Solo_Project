@@ -56,7 +56,7 @@ function UserPage() {
                 />
                 <h5 className="treeName">{favorite.species}</h5>
                 {/* <button >remove</button> */}
-                <ClearIcon onClick={() => handleSubmit(favorite.tree_id)}/>
+                <ClearIcon className="deleteIcon" onClick={() => handleSubmit(favorite.tree_id)}/>
               </div>
             );
           })}

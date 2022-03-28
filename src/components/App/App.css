@@ -167,3 +167,11 @@ input {
 .shadeIcon:hover {
   cursor: help;
 }
+
+.editIcon:hover {
+  cursor: pointer;
+}
+
+.deleteIcon:hover {
+  cursor: pointer;
+}

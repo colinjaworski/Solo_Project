@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
-
+import EditIcon from '@mui/icons-material/Edit';
 
 
 function SearchPage() {
@@ -114,9 +114,9 @@ function SearchPage() {
 
                 {(function () {
                   if (authorised) {
-                    return <button
-                      onClick={() => editPage(tree)}
-                    >Edit</button>;
+
+                    return <EditIcon className="editIcon" onClick={() => editPage(tree)}/>;
+
                   } else {
                     return;
                   }
