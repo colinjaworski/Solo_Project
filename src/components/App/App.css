@@ -133,7 +133,7 @@ input {
 }
 
 .treePicture:hover {
-  opacity: .5;
+  opacity: .75;
   cursor: pointer;
   z-index: 0;
 }
@@ -149,7 +149,8 @@ input {
   margin-bottom: 300px;
   z-index: 0;
   position:relative;
-  /* backdrop-filter: blur(3px); */
+  font-size: 18px;
+  top: 30%;
 }
 
 .treeName:hover {

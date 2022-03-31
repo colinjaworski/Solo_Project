@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './DetailsPage.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Fab from '@mui/material/Fab';
-
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
